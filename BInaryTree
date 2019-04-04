@@ -32,11 +32,11 @@ public class BinaryTree<T extends Comparable<T>> {
     }
     public void print(String output,BinaryTreeNode<T> node) {
         if(node.getRight() != null) {
-            print(output, true, "",node.getRight());
+            print(output, true, "-",node.getRight());
         }
         printValue(output,node);
         if(node.getLeft() != null) {
-            print(output,false,"",node.getLeft());
+            print(output,false," -",node.getLeft());
         }
     }
     public void printValue(String output,BinaryTreeNode<T> node){
@@ -50,22 +50,22 @@ public class BinaryTree<T extends Comparable<T>> {
     }
     public void print(String output,boolean isR, String indents,BinaryTreeNode<T> node){
         if(node.getRight() != null) {
-            print(output, true, indents + (isR ? " " : " | "), node.getRight());
+            print(output, true, indents + (isR ? "  " : " | "), node.getRight());
 
         }
-        System.out.print(indents);
+       // System.out.print(indents);
         if(isR) {
-            System.out.print(" - ");
+            System.out.print("");
 
         } else {
-            System.out.println(" || ");
+            System.out.print(" \\ ");
         }
 
         printValue(output,node);
         if( node.getLeft() != null) {
-            print(output,false,indents + (isR ? " |" : "  "),node.getLeft());
+            print(output,false,indents + (isR ? " | " : "  "),node.getLeft());
         }
-
+        System.out.print("  ");
     }
     public void print(){
         print("",root);
