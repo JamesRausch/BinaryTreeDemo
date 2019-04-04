@@ -1,0 +1,91 @@
+package treedemo;
+
+public class BinaryTree<T extends Comparable<T>> {
+    BinaryTreeNode<T> root;
+    public void addElement(T value){
+        if(root == null)
+        {
+            root = new BinaryTreeNode<T>(value);
+        } else {
+            BinaryTreeNode<T> parent = root;
+            while (parent != null) {
+                if (parent.getValue().compareTo(value) > 0) {
+                    if (parent.getRight() == null) {
+                        BinaryTreeNode<T> node = new BinaryTreeNode<T>(value);
+                        parent.addRight(node);
+                        break;
+                    } else {
+                        parent = parent.getRight();
+                    }
+                }  else {
+                    if(parent.getLeft() == null) {
+                        BinaryTreeNode<T> node = new BinaryTreeNode<T>(value);
+                        parent.addLeft(node);
+                        break;
+                    } else {
+                        parent = parent.getLeft();
+                    }
+
+                }
+            }
+        }
+    }
+    public void print(String output,BinaryTreeNode<T> node) {
+        if(node.getRight() != null) {
+            print(output, true, "",node.getRight());
+        }
+        printValue(output,node);
+        if(node.getLeft() != null) {
+            print(output,false,"",node.getLeft());
+        }
+    }
+    public void printValue(String output,BinaryTreeNode<T> node){
+        if(node.getValue() == null){
+            System.out.print("null");
+        } else {
+            System.out.print(node.getValue());
+        }
+
+
+    }
+    public void print(String output,boolean isR, String indents,BinaryTreeNode<T> node){
+        if(node.getRight() != null) {
+            print(output, true, indents + (isR ? " " : " | "), node.getRight());
+
+        }
+        System.out.print(indents);
+        if(isR) {
+            System.out.print(" - ");
+
+        } else {
+            System.out.println(" || ");
+        }
+
+        printValue(output,node);
+        if( node.getLeft() != null) {
+            print(output,false,indents + (isR ? " |" : "  "),node.getLeft());
+        }
+
+    }
+    public void print(){
+        print("",root);
+    }
+
+    public BinaryTreeNode find(String value,BinaryTreeNode<T> node)
+    {
+        if(node != null) {
+            if (node.getValue().equals(value)) {
+                return node;
+            } else {
+                if (node.getRight() != null) {
+                    find(value, node.getRight());
+                }
+                if (node.getLeft() != null) {
+                    find(value, node.getLeft());
+                }
+            }
+        }
+        return null;
+    }
+
+}
