@@ -1,0 +1,47 @@
+package treedemo;
+
+public class BinaryTreeNode<T extends Comparable<T>> {
+        public BinaryTreeNode(T value)
+        {
+            super();
+            setValue(value);
+        }
+    private BinaryTreeNode<T> left;
+    private BinaryTreeNode<T> right;
+    private T value;
+    public void addLeft(BinaryTreeNode<T> newNode)
+    {
+        left = newNode;
+
+    }
+    public void addRight(BinaryTreeNode<T> newNode)
+    {
+        right = newNode;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
+
+    public BinaryTreeNode<T> getLeft() {
+        return left;
+    }
+
+    public BinaryTreeNode<T> getRight() {
+        return right;
+    }
+    public boolean isLeft(BinaryTreeNode<T> node)
+    {
+        return node == left;
+    }
+    public boolean isRight(BinaryTreeNode<T> node)
+    {
+        return node == right;
+    }
+
+
+}
